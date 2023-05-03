@@ -1,0 +1,66 @@
+﻿@model EPM.Mouser.Interview.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+    var result = ViewBag.result;
+}
+
+@if (@result!=null)
+{
+    @if (@result.Success)
+    {
+        <h4> Succesfull Addition !!</h4>
+    }
+    else
+    {
+        <h4 color="red"> failed </h4>
+    }
+}
+
+<h1>Create</h1>
+
+<h4>ItemModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="AddProduct" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"> Id </label>
+                <input type="number" asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="InStockQuantity" class="control-label"> InStockQuantity</label>
+                <input type="number" asp-for="InStockQuantity" class="form-control" />
+                <span asp-validation-for="InStockQuantity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"> Name </label>
+                <input type="text" asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            
+            <div class="form-group">
+                <label asp-for="ReservedQuantity" class="control-label"> Reserved Quantity</label>
+                <input asp-for="ReservedQuantity" type="text" class="form-control" />
+                
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="AddProduct" class="btn btn-primary" action="AddProduct" formmethod="post"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="/">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
